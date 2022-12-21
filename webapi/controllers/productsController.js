@@ -192,7 +192,7 @@ controller.route('/:articleNumber').delete(async (httpRequest, httpResponse) =>{
 })
 
 
-controller.route('/:articleNumber').get(async (httpRequest, httpResponse) =>{
+controller.route('/:articleNumber').patch(async (httpRequest, httpResponse) =>{
   
     if(httpRequest.params.articleNumber)
     httpResponse.status(400).json( 'no articlenumber was specified')
