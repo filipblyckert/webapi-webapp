@@ -7,4 +7,3 @@ module.exports = initMongoDB
 
 
 
-// console.log(`MongoDB is running at ${conn?.connection.host}`)

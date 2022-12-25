@@ -5,20 +5,7 @@ const { db } = require('../schemas/productSchema')
 console.log(products)
 const productSchema = require('../schemas/productSchema')
 
-// controller.param("articleNumber", (req, res, next, articleNumber) => {
 
-//     req.products= products.find(x => x.articleNumber == articleNumber)
-//      next()
-// })
-
-
-// controller.param("tag", (req, res, next, tag) => {
-
-//     req.products= products.filter(x => x.tag == tag)
-//      next()
-// })
-
-//http://localhost:5000/api/products
 
 
 
@@ -131,10 +118,7 @@ controller.route('/:tag/ :take').get(async(httpRequest, httpResponse) => {
   
 
 
-      // let list = []
-
-    // for (let i = 0; i < Number (httpRequest.params.take); i++)
-    //     list.push(httpRequest.products[i])
+     
 
 })
 
@@ -194,19 +178,14 @@ controller.route('/:articleNumber').delete(async (httpRequest, httpResponse) =>{
 
 controller.route('/:articleNumber').patch(async (httpRequest, httpResponse) =>{
   
-    if(httpRequest.params.articleNumber)
-    httpResponse.status(400).json( 'no articlenumber was specified')
-
-    else{
-         const item = await productSchema.findById(httpRequest.params.articleNumber)
-    if (item) {
-        await productSchema.updateOne(item)
-        httpResponse.status(200).json({text: 'product updated'})
-
-    } else {
-        httpResponse.status(404).json({text: 'product not found'})
-    }
-    }
+    try{
+        const item = await item.findById(httpRequest.params.id)
+        Object.assign(item, httpRequest.body)
+        httpResponse.send({data:item})
+     
+       
+    }   catch{
+         httpResponse.status(404).json({text: 'product not found'})}
  
 })
 
